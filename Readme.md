@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг»
 
-* Студент: [Алексей Казаков](https://up.htmlacademy.ru/javascript/23/user/1652405).
-* Наставник: `Неизвестно`.
+- Студент: [Алексей Казаков](https://up.htmlacademy.ru/javascript/23/user/1652405).
+- Наставник: [Игорь Казанцев](https://htmlacademy.ru/profile/id572311).
 
 ---
 
