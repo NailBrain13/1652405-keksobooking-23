@@ -28,12 +28,14 @@ const PHOTOS = [
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
 ];
 
+let imgCount = 1;
+
 const getRandomArrayElement = (element) =>
   element[getNumber(0, element.length - 1)];
 
 const getOffer = () => ({
   author: {
-    avatar: `img/avatars/user/0${getNumber(1, 8)}.png`,
+    avatar: `img/avatars/user/0${imgCount++}.png`,
   },
   offer: {
     title: 'Это доступное обьявление по вашим запросам',
@@ -45,7 +47,7 @@ const getOffer = () => ({
     checkin: `до ${getRandomArrayElement(TIME)}`,
     checkout: `после ${getRandomArrayElement(TIME)}`,
     features: getRandomArrayElement(FEATURES),
-    description: 'Описание',
+    description: 'Описание пока оставил общее',
     photos: getRandomArrayElement(PHOTOS),
     location: {
       lat: getNumber(35.65, 35.7, 5),
