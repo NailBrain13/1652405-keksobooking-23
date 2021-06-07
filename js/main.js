@@ -9,9 +9,9 @@ const getNumber = (minValue, maxValue, dotValue = 0) => {
   return 'error message';
 };
 
-const TYPE = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
+const TYPES = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
 
-const TIME = ['12:00', '13:00', '14:00'];
+const TIMES = ['12:00', '13:00', '14:00'];
 
 const FEATURES = [
   'wifi',
@@ -28,24 +28,29 @@ const PHOTOS = [
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
 ];
 
-let imgCount = 1;
+const offersCount = 10;
 
-const getRandomArrayElement = (element) =>
-  element[getNumber(0, element.length - 1)];
+let avatarImgCount = 1;
+
+const getRandomArrayElement = (elements) =>
+  elements[getNumber(0, elements.length - 1)];
 
 const getOffer = () => ({
   author: {
-    avatar: `img/avatars/user/0${imgCount++}.png`,
+    avatar:
+      avatarImgCount <= 8
+        ? `img/avatars/user/0${avatarImgCount++}.png`
+        : 'нету доступных аватарок',
   },
   offer: {
     title: 'Это доступное обьявление по вашим запросам',
     address: `location.x=${getNumber(10, 20)} location.y=${getNumber(10, 20)}`,
     price: getNumber(100, 1000),
-    type: getRandomArrayElement(TYPE),
+    type: getRandomArrayElement(TYPES),
     rooms: getNumber(1, 5),
     guests: getNumber(1, 8),
-    checkin: `до ${getRandomArrayElement(TIME)}`,
-    checkout: `после ${getRandomArrayElement(TIME)}`,
+    checkin: `до ${getRandomArrayElement(TIMES)}`,
+    checkout: `после ${getRandomArrayElement(TIMES)}`,
     features: getRandomArrayElement(FEATURES),
     description: 'Описание пока оставил общее',
     photos: getRandomArrayElement(PHOTOS),
@@ -56,7 +61,7 @@ const getOffer = () => ({
   },
 });
 
-const arrayOffers = new Array(4).fill(null).map(() => getOffer());
+const arrayOffers = new Array(offersCount).fill(null).map(() => getOffer());
 
 // eslint-disable-next-line
 console.log(arrayOffers);
