@@ -55,4 +55,7 @@ const arrayOffers = (offersCount) =>
     .fill(null)
     .map(() => getOffer());
 
+// eslint-disable-next-line
+console.log('Массив создан в test-data', arrayOffers(4));
+
 export { arrayOffers };
