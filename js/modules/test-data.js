@@ -19,8 +19,6 @@ const PHOTOS = [
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
 ];
 
-const offersCount = 10;
-
 let avatarImgCount = 1;
 
 const getRandomArrayElement = (elements) =>
@@ -52,6 +50,9 @@ const getOffer = () => ({
   },
 });
 
-const arrayOffers = new Array(offersCount).fill(null).map(() => getOffer());
+const arrayOffers = (offersCount) =>
+  Array(offersCount)
+    .fill(null)
+    .map(() => getOffer());
 
 export { arrayOffers };
