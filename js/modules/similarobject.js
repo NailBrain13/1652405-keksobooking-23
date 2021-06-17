@@ -5,6 +5,7 @@ const similarCardTemplate = document
   .querySelector('#card')
   .content.querySelector('.popup');
 
+mapCanvas.style.paddingTop = '20px';
 mapCanvas.style.display = 'flex';
 mapCanvas.style.justifyContent = 'space-around';
 mapCanvas.style.height = 'auto';
@@ -41,14 +42,16 @@ const generateCardList = () => {
     ).textContent = `Заезд ${card.offer.checkin}, выезд ${card.offer.checkout}`;
     similarCards.querySelector('.popup__description').textContent =
       card.offer.description;
+
     similarCards.querySelector('.popup__avatar').src = card.author.avatar;
     similarCards.querySelector('.popup__photo').src = card.offer.photos;
     similarCards.querySelector('.popup__type').textContent =
       newTypes[card.offer.type];
 
-    similarCards.querySelector(
-      '.popup__feature',
-    ).className = `popup__feature popup__feature--${card.offer.features}`;
+    const features = similarCards.querySelector('.popup__features');
+    features.innerHTML = '<li class="popup__feature"></li>';
+    const featureItem = features.querySelector('.popup__feature');
+    featureItem.classList.add(`popup__feature--${card.offer.features}`);
 
     mapCanvas.appendChild(similarCards);
   });
