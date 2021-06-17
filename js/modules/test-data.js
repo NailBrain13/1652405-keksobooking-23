@@ -28,8 +28,8 @@ const getOffer = () => ({
   author: {
     avatar:
       avatarImgCount <= 8
-        ? `img/avatars/user/0${avatarImgCount++}.png`
-        : 'нету доступных аватарок',
+        ? `img/avatars/user0${avatarImgCount++}.png`
+        : 'img/avatars/default.png',
   },
   offer: {
     title: 'Это доступное обьявление по вашим запросам',
@@ -54,8 +54,5 @@ const arrayOffers = (offersCount) =>
   Array(offersCount)
     .fill(null)
     .map(() => getOffer());
-
-// eslint-disable-next-line
-console.log('Массив создан в test-data', arrayOffers(4));
 
 export { arrayOffers };
