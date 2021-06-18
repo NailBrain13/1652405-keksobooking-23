@@ -42,8 +42,17 @@ const generateCardList = () => {
     const cardFeautures = similarCards.querySelector('.popup__features');
 
     Object.keys(offer).forEach(() => {
+      if (!offer.title) {
+        offer.title = 'Заголовок не указан';
+      }
+      if (!offer.address) {
+        offer.address = 'Аддрес не указан';
+      }
       if (!offer.price) {
         similarPrice.classList.add('hidden');
+      }
+      if (!offer.type) {
+        similarType.classList.add('hidden');
       }
       if (!offer.rooms || !offer.guests) {
         similarGuests.classList.add('hidden');
@@ -51,11 +60,11 @@ const generateCardList = () => {
       if (!offer.checkin || !offer.checkout) {
         similarTime.classList.add('hidden');
       }
-      if (!offer.type) {
-        similarType.classList.add('hidden');
-      }
       if (!offer.description) {
         similarDesc.classList.add('hidden');
+      }
+      if (!offer.photos) {
+        offer.photos = '';
       }
       if (!offer.features) {
         cardFeautures.classList.add('hidden');
@@ -74,10 +83,6 @@ const generateCardList = () => {
         });
       }
     });
-
-    //const checkKey = (obj) => Object.keys(obj);
-
-    //console.log(checkKey(offer));
 
     similarTitle.textContent = offer.title;
     similarAddr.textContent = offer.address;
