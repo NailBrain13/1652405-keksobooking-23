@@ -39,19 +39,45 @@ const generateCardList = () => {
     const similarPhoto = similarCards.querySelector('.popup__photo');
     const similarType = similarCards.querySelector('.popup__type');
 
-    const popupFeautures = similarCards.querySelector('.popup__features');
-    const feature = offer.features.map(
-      (feature) => `popup__feature--${feature}`,
-    );
+    const cardFeautures = similarCards.querySelector('.popup__features');
 
-    feature.forEach(() => {
-      popupFeautures.querySelectorAll('.popup__feature').forEach((item) => {
-        const elementClass = item.classList[1];
-        if (!feature.includes(elementClass)) {
-          item.remove();
-        }
-      });
+    Object.keys(offer).forEach(() => {
+      if (!offer.price) {
+        similarPrice.classList.add('hidden');
+      }
+      if (!offer.rooms || !offer.guests) {
+        similarGuests.classList.add('hidden');
+      }
+      if (!offer.checkin || !offer.checkout) {
+        similarTime.classList.add('hidden');
+      }
+      if (!offer.type) {
+        similarType.classList.add('hidden');
+      }
+      if (!offer.description) {
+        similarDesc.classList.add('hidden');
+      }
+      if (!offer.features) {
+        cardFeautures.classList.add('hidden');
+      } else {
+        const featureItem = offer.features.map(
+          (feature) => `popup__feature--${feature}`,
+        );
+
+        featureItem.forEach(() => {
+          cardFeautures.querySelectorAll('.popup__feature').forEach((item) => {
+            const elementClass = item.classList[1];
+            if (!featureItem.includes(elementClass)) {
+              item.remove();
+            }
+          });
+        });
+      }
     });
+
+    //const checkKey = (obj) => Object.keys(obj);
+
+    //console.log(checkKey(offer));
 
     similarTitle.textContent = offer.title;
     similarAddr.textContent = offer.address;

@@ -13,6 +13,13 @@ const FEATURES = [
   'conditioner',
 ];
 
+const DESCRIPTION = [
+  'Описание №1',
+  'Описание №2',
+  'Описание №3',
+  'Описание №4',
+];
+
 const PHOTOS = [
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
@@ -23,6 +30,8 @@ let avatarImgCount = 1;
 
 const getRandomArrayElement = (elements) =>
   elements[getNumber(0, elements.length - 1)];
+
+const getRandomLength = (array) => array.slice(0, getNumber(1, array.length));
 
 const getOffer = () => ({
   author: {
@@ -40,12 +49,8 @@ const getOffer = () => ({
     guests: getNumber(1, 8),
     checkin: `до ${getRandomArrayElement(TIMES)}`,
     checkout: `после ${getRandomArrayElement(TIMES)}`,
-    features: [
-      getRandomArrayElement(FEATURES),
-      getRandomArrayElement(FEATURES),
-      getRandomArrayElement(FEATURES),
-    ],
-    description: 'Описание пока оставил общее',
+    features: getRandomLength(FEATURES),
+    description: getRandomArrayElement(DESCRIPTION),
     photos: getRandomArrayElement(PHOTOS),
     location: {
       lat: getNumber(35.65, 35.7, 5),
