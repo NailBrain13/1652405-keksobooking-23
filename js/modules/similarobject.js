@@ -1,4 +1,4 @@
-import { arrayOffers } from '../modules/test-data.js';
+import { arrayOffers, FEATURES } from '../modules/test-data.js';
 
 const mapCanvas = document.querySelector('#map-canvas');
 const similarCardTemplate = document
@@ -17,7 +17,7 @@ const newTestArray = arrayOffers(currentOffers);
 
 const similarCard = newTestArray;
 
-const newTypes = {
+const translateTypes = {
   palace: 'Дворец',
   flat: 'Квартира',
   house: 'Дом',
@@ -26,33 +26,57 @@ const newTypes = {
 };
 
 const generateCardList = () => {
-  similarCard.forEach((card) => {
+  similarCard.forEach(({ author, offer }) => {
     const similarCards = similarCardTemplate.cloneNode(true);
-    similarCards.querySelector('.popup__title').textContent = card.offer.title;
-    similarCards.querySelector('.popup__text--address').textContent =
-      card.offer.address;
-    similarCards.querySelector(
-      '.popup__text--price',
-    ).textContent = `${card.offer.price} ₽/ночь`;
-    similarCards.querySelector(
-      '.popup__text--capacity',
-    ).textContent = `${card.offer.rooms} комнаты для ${card.offer.guests} гостей`;
-    similarCards.querySelector(
-      '.popup__text--time',
-    ).textContent = `Заезд ${card.offer.checkin}, выезд ${card.offer.checkout}`;
-    similarCards.querySelector('.popup__description').textContent =
-      card.offer.description;
+    const similarTitle = similarCards.querySelector('.popup__title');
+    const similarAddr = similarCards.querySelector('.popup__text--address');
+    const similarPrice = similarCards.querySelector('.popup__text--price');
+    const similarGuests = similarCards.querySelector('.popup__text--capacity');
+    const similarTime = similarCards.querySelector('.popup__text--time');
+    const similarDesc = similarCards.querySelector('.popup__description');
 
-    similarCards.querySelector('.popup__avatar').src = card.author.avatar;
-    similarCards.querySelector('.popup__photo').src = card.offer.photos;
-    similarCards.querySelector('.popup__type').textContent =
-      newTypes[card.offer.type];
+    const similarAvatar = similarCards.querySelector('.popup__avatar');
+    const similarPhoto = similarCards.querySelector('.popup__photo');
+    const similarType = similarCards.querySelector('.popup__type');
 
+    //по примеру из лайва только не понял как масив FEATURES или результат массива offer.features исп без импорта
+    const popupFeautures = similarCards.querySelector('.popup__features');
+    const feature = FEATURES.map(() => `popup__feature--${offer.features}`);
+
+    feature.forEach(() => {
+      popupFeautures.querySelectorAll('.popup__feature').forEach((item) => {
+        const elementClass = item.classList[1];
+        if (!feature.includes(elementClass)) {
+          item.remove();
+        }
+      });
+    });
+
+    const emptyCheck = () => {
+      if (offer.type.length === 0) {
+        similarType.classList.add('none');
+        similarType.style.marginBottom('50px');
+      }
+    };
+
+    similarTitle.textContent = offer.title || ''; // если нету заголовка пустая строка
+    similarAddr.textContent = offer.address;
+    similarPrice.textContent = `${offer.price} ₽/ночь`;
+    similarGuests.textContent = `${offer.rooms} комнаты для ${offer.guests} гостей`;
+    similarTime.textContent = `Заезд ${offer.checkin}, выезд ${offer.checkout}`;
+    similarDesc.textContent = offer.description;
+    similarAvatar.src = author.avatar;
+    similarPhoto.src = offer.photos;
+    similarType.textContent = translateTypes[offer.type];
+
+    /* пример со вставкой в HTML
     const features = similarCards.querySelector('.popup__features');
     features.innerHTML = '<li class="popup__feature"></li>';
     const featureItem = features.querySelector('.popup__feature');
-    featureItem.classList.add(`popup__feature--${card.offer.features}`);
+    featureItem.classList.add(`popup__feature--${offer.features}`);
+    */
 
+    emptyCheck();
     mapCanvas.appendChild(similarCards);
   });
 };

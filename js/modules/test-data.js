@@ -55,4 +55,4 @@ const arrayOffers = (offersCount) =>
     .fill(null)
     .map(() => getOffer());
 
-export { arrayOffers };
+export { arrayOffers, FEATURES };
