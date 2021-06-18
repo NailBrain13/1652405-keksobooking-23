@@ -1,4 +1,4 @@
-import { arrayOffers, FEATURES } from '../modules/test-data.js';
+import { arrayOffers } from '../modules/test-data.js';
 
 const mapCanvas = document.querySelector('#map-canvas');
 const similarCardTemplate = document
@@ -39,9 +39,10 @@ const generateCardList = () => {
     const similarPhoto = similarCards.querySelector('.popup__photo');
     const similarType = similarCards.querySelector('.popup__type');
 
-    //по примеру из лайва только не понял как масив FEATURES или результат массива offer.features исп без импорта
     const popupFeautures = similarCards.querySelector('.popup__features');
-    const feature = FEATURES.map(() => `popup__feature--${offer.features}`);
+    const feature = offer.features.map(
+      (feature) => `popup__feature--${feature}`,
+    );
 
     feature.forEach(() => {
       popupFeautures.querySelectorAll('.popup__feature').forEach((item) => {
@@ -52,14 +53,7 @@ const generateCardList = () => {
       });
     });
 
-    const emptyCheck = () => {
-      if (offer.type.length === 0) {
-        similarType.classList.add('none');
-        similarType.style.marginBottom('50px');
-      }
-    };
-
-    similarTitle.textContent = offer.title || ''; // если нету заголовка пустая строка
+    similarTitle.textContent = offer.title;
     similarAddr.textContent = offer.address;
     similarPrice.textContent = `${offer.price} ₽/ночь`;
     similarGuests.textContent = `${offer.rooms} комнаты для ${offer.guests} гостей`;
@@ -69,14 +63,6 @@ const generateCardList = () => {
     similarPhoto.src = offer.photos;
     similarType.textContent = translateTypes[offer.type];
 
-    /* пример со вставкой в HTML
-    const features = similarCards.querySelector('.popup__features');
-    features.innerHTML = '<li class="popup__feature"></li>';
-    const featureItem = features.querySelector('.popup__feature');
-    featureItem.classList.add(`popup__feature--${offer.features}`);
-    */
-
-    emptyCheck();
     mapCanvas.appendChild(similarCards);
   });
 };

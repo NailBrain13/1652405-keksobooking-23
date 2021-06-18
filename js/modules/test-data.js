@@ -40,7 +40,11 @@ const getOffer = () => ({
     guests: getNumber(1, 8),
     checkin: `до ${getRandomArrayElement(TIMES)}`,
     checkout: `после ${getRandomArrayElement(TIMES)}`,
-    features: getRandomArrayElement(FEATURES),
+    features: [
+      getRandomArrayElement(FEATURES),
+      getRandomArrayElement(FEATURES),
+      getRandomArrayElement(FEATURES),
+    ],
     description: 'Описание пока оставил общее',
     photos: getRandomArrayElement(PHOTOS),
     location: {
@@ -55,4 +59,4 @@ const arrayOffers = (offersCount) =>
     .fill(null)
     .map(() => getOffer());
 
-export { arrayOffers, FEATURES };
+export { arrayOffers };
