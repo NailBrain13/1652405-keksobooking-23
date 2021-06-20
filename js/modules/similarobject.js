@@ -1,4 +1,5 @@
 import { arrayOffers } from '../modules/test-data.js';
+import { comparisonTypes } from './util.js';
 
 const mapCanvas = document.querySelector('#map-canvas');
 const similarCardTemplate = document
@@ -30,21 +31,6 @@ const generateCardsList = () => {
     const similarAvatar = similarCard.querySelector('.popup__avatar');
     const similarPhoto = similarCard.querySelector('.popup__photo');
     const similarType = similarCard.querySelector('.popup__type');
-
-    const comparisonTypes = () => {
-      switch (offer.type) {
-        case 'flat':
-          return 'Квартира';
-        case 'bungalow':
-          return 'Бунгало';
-        case 'house':
-          return 'Дом';
-        case 'palace':
-          return 'Дворец';
-        case 'hotel':
-          return 'Отель';
-      }
-    };
 
     const cardFeautures = similarCard.querySelector('.popup__features');
 
@@ -99,7 +85,7 @@ const generateCardsList = () => {
     similarDesc.textContent = offer.description;
     similarAvatar.src = author.avatar;
     similarPhoto.src = offer.photos;
-    similarType.textContent = comparisonTypes();
+    similarType.textContent = comparisonTypes(offer);
 
     mapCanvas.appendChild(similarCard);
   });

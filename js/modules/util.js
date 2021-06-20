@@ -6,4 +6,19 @@ const getNumber = (minValue, maxValue, dotValue = 0) => {
   return 'error message';
 };
 
-export { getNumber };
+const comparisonTypes = (obj) => {
+  switch (obj.type) {
+    case 'flat':
+      return 'Квартира';
+    case 'bungalow':
+      return 'Бунгало';
+    case 'house':
+      return 'Дом';
+    case 'palace':
+      return 'Дворец';
+    case 'hotel':
+      return 'Отель';
+  }
+};
+
+export { getNumber, comparisonTypes };
