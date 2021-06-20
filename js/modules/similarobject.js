@@ -15,31 +15,38 @@ const currentOffers = 10;
 
 const newTestArray = arrayOffers(currentOffers);
 
-const similarCard = newTestArray;
+const similarCards = newTestArray;
 
-const translateTypes = {
-  palace: 'Дворец',
-  flat: 'Квартира',
-  house: 'Дом',
-  bungalow: 'Бунгало',
-  hotel: 'Отель',
-};
+const generateCardsList = () => {
+  similarCards.forEach(({ author, offer }) => {
+    const similarCard = similarCardTemplate.cloneNode(true);
+    const similarTitle = similarCard.querySelector('.popup__title');
+    const similarAddr = similarCard.querySelector('.popup__text--address');
+    const similarPrice = similarCard.querySelector('.popup__text--price');
+    const similarGuests = similarCard.querySelector('.popup__text--capacity');
+    const similarTime = similarCard.querySelector('.popup__text--time');
+    const similarDesc = similarCard.querySelector('.popup__description');
 
-const generateCardList = () => {
-  similarCard.forEach(({ author, offer }) => {
-    const similarCards = similarCardTemplate.cloneNode(true);
-    const similarTitle = similarCards.querySelector('.popup__title');
-    const similarAddr = similarCards.querySelector('.popup__text--address');
-    const similarPrice = similarCards.querySelector('.popup__text--price');
-    const similarGuests = similarCards.querySelector('.popup__text--capacity');
-    const similarTime = similarCards.querySelector('.popup__text--time');
-    const similarDesc = similarCards.querySelector('.popup__description');
+    const similarAvatar = similarCard.querySelector('.popup__avatar');
+    const similarPhoto = similarCard.querySelector('.popup__photo');
+    const similarType = similarCard.querySelector('.popup__type');
 
-    const similarAvatar = similarCards.querySelector('.popup__avatar');
-    const similarPhoto = similarCards.querySelector('.popup__photo');
-    const similarType = similarCards.querySelector('.popup__type');
+    const comparisonTypes = () => {
+      switch (offer.type) {
+        case 'flat':
+          return 'Квартира';
+        case 'bungalow':
+          return 'Бунгало';
+        case 'house':
+          return 'Дом';
+        case 'palace':
+          return 'Дворец';
+        case 'hotel':
+          return 'Отель';
+      }
+    };
 
-    const cardFeautures = similarCards.querySelector('.popup__features');
+    const cardFeautures = similarCard.querySelector('.popup__features');
 
     Object.keys(offer).forEach(() => {
       if (!offer.title) {
@@ -92,10 +99,10 @@ const generateCardList = () => {
     similarDesc.textContent = offer.description;
     similarAvatar.src = author.avatar;
     similarPhoto.src = offer.photos;
-    similarType.textContent = translateTypes[offer.type];
+    similarType.textContent = comparisonTypes();
 
-    mapCanvas.appendChild(similarCards);
+    mapCanvas.appendChild(similarCard);
   });
 };
 
-export { generateCardList };
+export { generateCardsList };
