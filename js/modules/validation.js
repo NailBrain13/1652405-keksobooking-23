@@ -1,13 +1,10 @@
 const MIN_TITLE_LENGTH = 30;
 const MAX_TITLE_LENGTH = 100;
-const formTitleInput = document.querySelector('#title');
 const MIN_PRICE = 0;
 const MAX_PRICE = 1000000;
-const formRoomsInput = document.querySelector('#room_number');
-const formGuestsInput = document.querySelector('#capacity');
 const MAX_ROOM_NUMBER = 100;
-const formPriceInput = document.querySelector('#price');
 
+const formTitleInput = document.querySelector('#title');
 formTitleInput.addEventListener('input', () => {
   const valueLength = formTitleInput.value.length;
   if (valueLength < MIN_TITLE_LENGTH) {
@@ -25,6 +22,7 @@ formTitleInput.addEventListener('input', () => {
   formTitleInput.reportValidity();
 });
 
+const formPriceInput = document.querySelector('#price');
 formPriceInput.addEventListener('input', () => {
   const valuePrice = formPriceInput.value;
   if (valuePrice < MIN_PRICE) {
@@ -42,6 +40,8 @@ formPriceInput.addEventListener('input', () => {
   formPriceInput.reportValidity();
 });
 
+const formRoomsInput = document.querySelector('#room_number');
+const formGuestsInput = document.querySelector('#capacity');
 const checkCapacity = (input) => {
   if (
     Number(formRoomsInput.value) === MAX_ROOM_NUMBER &&
