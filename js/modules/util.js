@@ -27,4 +27,8 @@ const toLowerCase = (obj) =>
     return a;
   }, {});
 
-export { getNumber, comparisonTypes, toLowerCase };
+const setSameValue = (currentValue, changeableValue) => {
+  changeableValue.value = currentValue.value;
+};
+
+export { getNumber, comparisonTypes, toLowerCase, setSameValue };

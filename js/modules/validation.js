@@ -1,4 +1,4 @@
-import { toLowerCase } from './util.js';
+import { toLowerCase, setSameValue } from './util.js';
 const MIN_TITLE_LENGTH = 30;
 const MAX_TITLE_LENGTH = 100;
 const MIN_PRICE = 0;
@@ -88,9 +88,6 @@ formGuestsInput.addEventListener('change', () => {
 const formTimeIn = document.querySelector('#timein');
 const formTimeOut = document.querySelector('#timeout');
 
-const setSameValue = (changedForm, formToSet) => {
-  formToSet.value = changedForm.value;
-};
 formTimeIn.addEventListener('change', () =>
   setSameValue(formTimeIn, formTimeOut),
 );
@@ -99,6 +96,7 @@ formTimeOut.addEventListener('change', () =>
 );
 
 const formTypeMatching = document.querySelector('#type');
+
 formTypeMatching.addEventListener('change', () => {
   const value = lowerCasePrice[formTypeMatching.value];
   switch (formTypeMatching.value) {
