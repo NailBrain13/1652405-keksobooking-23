@@ -21,4 +21,10 @@ const comparisonTypes = (obj) => {
   }
 };
 
-export { getNumber, comparisonTypes };
+const toLowerCase = (obj) =>
+  Object.entries(obj).reduce((a, [key, value]) => {
+    a[key.toLowerCase()] = value;
+    return a;
+  }, {});
+
+export { getNumber, comparisonTypes, toLowerCase };
