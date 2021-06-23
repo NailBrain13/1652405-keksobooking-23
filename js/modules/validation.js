@@ -1,8 +1,17 @@
+import { toLowerCase } from './util.js';
 const MIN_TITLE_LENGTH = 30;
 const MAX_TITLE_LENGTH = 100;
 const MIN_PRICE = 0;
 const MAX_PRICE = 1000000;
 const MAX_ROOM_NUMBER = 100;
+const PRICE_PER_TYPE = {
+  BUNGALOW: 0,
+  FLAT: 1000,
+  HOTEL: 3000,
+  HOUSE: 5000,
+  PALACE: 10000,
+};
+const lowerCasePrice = toLowerCase(PRICE_PER_TYPE);
 
 const formTitleInput = document.querySelector('#title');
 formTitleInput.addEventListener('input', () => {
@@ -74,4 +83,44 @@ formRoomsInput.addEventListener('change', () => {
 });
 formGuestsInput.addEventListener('change', () => {
   checkCapacity(formGuestsInput);
+});
+
+const formTimeIn = document.querySelector('#timein');
+const formTimeOut = document.querySelector('#timeout');
+
+const setSameValue = (changedForm, formToSet) => {
+  formToSet.value = changedForm.value;
+};
+formTimeIn.addEventListener('change', () =>
+  setSameValue(formTimeIn, formTimeOut),
+);
+formTimeOut.addEventListener('change', () =>
+  setSameValue(formTimeOut, formTimeIn),
+);
+
+const formTypeMatching = document.querySelector('#type');
+formTypeMatching.addEventListener('change', () => {
+  const value = lowerCasePrice[formTypeMatching.value];
+  switch (formTypeMatching.value) {
+    case 'flat':
+      formPriceInput.setAttribute('min', value);
+      formPriceInput.setAttribute('placeholder', value);
+      break;
+    case 'bungalow':
+      formPriceInput.setAttribute('min', value);
+      formPriceInput.setAttribute('placeholder', value);
+      break;
+    case 'house':
+      formPriceInput.setAttribute('min', value);
+      formPriceInput.setAttribute('placeholder', value);
+      break;
+    case 'palace':
+      formPriceInput.setAttribute('min', value);
+      formPriceInput.setAttribute('placeholder', value);
+      break;
+    case 'hotel':
+      formPriceInput.setAttribute('min', value);
+      formPriceInput.setAttribute('placeholder', value);
+      break;
+  }
 });
