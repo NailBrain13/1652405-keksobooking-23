@@ -21,4 +21,8 @@ const comparisonTypes = (obj) => {
   }
 };
 
-export { getNumber, comparisonTypes };
+const setSameValue = (currentValue, changeableValue) => {
+  changeableValue.value = currentValue.value;
+};
+
+export { getNumber, comparisonTypes, setSameValue };
