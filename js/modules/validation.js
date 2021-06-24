@@ -1,4 +1,4 @@
-import { toLowerCase, setSameValue } from './util.js';
+import { setSameValue } from './util.js';
 const MIN_TITLE_LENGTH = 30;
 const MAX_TITLE_LENGTH = 100;
 const MIN_PRICE = 0;
@@ -11,7 +11,6 @@ const PRICE_PER_TYPE = {
   HOUSE: 5000,
   PALACE: 10000,
 };
-const lowerCasePrice = toLowerCase(PRICE_PER_TYPE);
 
 const formTitleInput = document.querySelector('#title');
 formTitleInput.addEventListener('input', () => {
@@ -98,7 +97,7 @@ formTimeOut.addEventListener('change', () =>
 const formTypeMatching = document.querySelector('#type');
 
 formTypeMatching.addEventListener('change', () => {
-  const value = lowerCasePrice[formTypeMatching.value];
+  const value = PRICE_PER_TYPE[formTypeMatching.value.toUpperCase()];
   switch (formTypeMatching.value) {
     case 'flat':
       formPriceInput.setAttribute('min', value);

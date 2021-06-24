@@ -21,14 +21,8 @@ const comparisonTypes = (obj) => {
   }
 };
 
-const toLowerCase = (obj) =>
-  Object.entries(obj).reduce((a, [key, value]) => {
-    a[key.toLowerCase()] = value;
-    return a;
-  }, {});
-
 const setSameValue = (currentValue, changeableValue) => {
   changeableValue.value = currentValue.value;
 };
 
-export { getNumber, comparisonTypes, toLowerCase, setSameValue };
+export { getNumber, comparisonTypes, setSameValue };
