@@ -59,6 +59,7 @@ mainPinMarker.on('moveend', (evt) => {
 });
 
 const testMarkers = arrayOffers(TEST_MARKERS);
+const markerTestGroup = L.layerGroup().addTo(map);
 
 const createMarkers = (arr) => {
   arr.forEach((object) => {
@@ -70,7 +71,7 @@ const createMarkers = (arr) => {
       { icon: alterPinIcon },
     );
 
-    marker.addTo(map).bindPopup(getCard(object), {
+    marker.addTo(markerTestGroup).bindPopup(getCard(object), {
       keepInView: true,
     });
   });
