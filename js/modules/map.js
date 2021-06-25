@@ -1,5 +1,6 @@
 import { toggleForm } from './form.js';
 import { getNumber } from './util.js';
+import { arrayOffers } from './test-data.js';
 
 const latRandom = getNumber(35.65, 35.7, 5);
 const lngRandom = getNumber(139.7, 139.8, 5);
@@ -87,4 +88,18 @@ mainPinMarker.on('moveend', (evt) => {
   inputAddress.value = `${lat},  ${lng}`;
 });
 
+const testMarkers = arrayOffers(6);
+// console.log(testMarkers);
+
+testMarkers.forEach((item) => {
+  const marker = L.marker(
+    {
+      lat: item.offer.location.lat,
+      lng: item.offer.location.lng,
+    },
+    { icon: alterPinIcon },
+  );
+
+  marker.addTo(map);
+});
 export {};
