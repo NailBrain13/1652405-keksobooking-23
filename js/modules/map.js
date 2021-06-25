@@ -50,11 +50,18 @@ const alterPinMarker = L.marker(
     lng: lngRandom,
   },
   {
-    draggable: true,
     icon: alterPinIcon,
   },
 );
 alterPinMarker.addTo(map);
+
+const searchArea = L.circle([35.6952, 139.757], {
+  color: 'black',
+  fillColor: '#7FFFD4',
+  fillOpacity: 0.5,
+  radius: 22000,
+});
+searchArea.addTo(map);
 
 const resetButton = document.querySelector('.ad-form__reset');
 resetButton.addEventListener('click', () => {
@@ -62,7 +69,6 @@ resetButton.addEventListener('click', () => {
     lat: 35.6952,
     lng: 139.757,
   });
-  alterPinMarker.remove();
   map.setView(
     {
       lat: 35.68954,
@@ -70,6 +76,8 @@ resetButton.addEventListener('click', () => {
     },
     10,
   );
+  alterPinMarker.remove();
+  searchArea.remove();
 });
 
 mainPinMarker.on('moveend', (evt) => {
