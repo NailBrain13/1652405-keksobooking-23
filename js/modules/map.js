@@ -1,10 +1,9 @@
 import { toggleForm } from './form.js';
 import { getNumber } from './util.js';
-import { generateCardsList } from './similarobject.js';
+
 const latRandom = getNumber(35.65, 35.7, 5);
 const lngRandom = getNumber(139.7, 139.8, 5);
-
-generateCardsList(1);
+const inputAddress = document.querySelector('#address');
 
 const map = L.map('map-canvas')
   .on('load', () => {
@@ -73,8 +72,11 @@ resetButton.addEventListener('click', () => {
   );
 });
 
-// mainPinMarker.on('moveend', (evt) => {
-//   console.log(evt.target.getLatLng());
-// });
+mainPinMarker.on('moveend', (evt) => {
+  const userCoordinate = evt.target.getLatLng();
+  const lat = userCoordinate.lat.toFixed(5);
+  const lng = userCoordinate.lng.toFixed(5);
+  inputAddress.value = `${lat},  ${lng}`;
+});
 
 export {};
