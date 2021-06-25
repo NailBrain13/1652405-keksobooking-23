@@ -1,9 +1,6 @@
 import { toggleForm } from './form.js';
-import { getNumber } from './util.js';
 import { arrayOffers } from './test-data.js';
 import { getCard } from './card.js';
-const latRandom = getNumber(35.65, 35.7, 5);
-const lngRandom = getNumber(139.7, 139.8, 5);
 const TEST_MARKERS = 10;
 const TOKYO_CENTER = {
   lat: 35.68941,
@@ -15,7 +12,7 @@ const map = L.map('map-canvas')
   .on('load', () => {
     toggleForm(false);
   })
-  .setView(TOKYO_CENTER, 10);
+  .setView(TOKYO_CENTER, 11);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution:
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -50,7 +47,7 @@ const resetButton = document.querySelector('.ad-form__reset');
 resetButton.addEventListener('click', () => {
   mainPinMarker.setLatLng(TOKYO_CENTER);
 
-  map.setView(TOKYO_CENTER, 10);
+  map.setView(TOKYO_CENTER, 11);
   searchArea.remove();
 });
 
@@ -63,20 +60,20 @@ mainPinMarker.on('moveend', (evt) => {
 
 const testMarkers = arrayOffers(TEST_MARKERS);
 
-const createMarkers = () => {
-  testMarkers.forEach((obj) => {
+const createMarkers = (arr) => {
+  arr.forEach((object) => {
     const marker = L.marker(
       {
-        lat: obj.offer.location.lat,
-        lng: obj.offer.location.lng,
+        lat: object.offer.location.lat,
+        lng: object.offer.location.lng,
       },
       { icon: alterPinIcon },
     );
 
-    marker.addTo(map).bindPopup(getCard(obj), {
+    marker.addTo(map).bindPopup(getCard(object), {
       keepInView: true,
     });
   });
 };
 
-export { createMarkers };
+export { createMarkers, testMarkers };

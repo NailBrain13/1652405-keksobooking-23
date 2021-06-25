@@ -1,5 +1,5 @@
-import { createMarkers } from './modules/map.js';
+import { createMarkers, testMarkers } from './modules/map.js';
 
 import './modules/validation.js';
 
-createMarkers();
+createMarkers(testMarkers);
