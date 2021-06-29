@@ -7,7 +7,7 @@ const TOKYO_CENTER = {
   lng: 139.69232,
 };
 const inputAddress = document.querySelector('#address');
-
+toggleForm(true);
 const map = L.map('map-canvas')
   .on('load', () => {
     toggleForm(false);

@@ -33,31 +33,35 @@ const getRandomArrayElement = (elements) =>
 
 const getRandomLength = (array) => array.slice(0, getNumber(1, array.length));
 
-const getOffer = () => ({
-  author: {
-    avatar:
-      avatarImgCount <= 8
-        ? `img/avatars/user0${avatarImgCount++}.png`
-        : 'img/avatars/default.png',
-  },
-  offer: {
-    title: 'Это доступное обьявление по вашим запросам',
-    address: `location.x=${getNumber(10, 20)} location.y=${getNumber(10, 20)}`,
-    price: getNumber(100, 1000),
-    type: getRandomArrayElement(TYPES),
-    rooms: getNumber(1, 5),
-    guests: getNumber(1, 8),
-    checkin: `до ${getRandomArrayElement(TIMES)}`,
-    checkout: `после ${getRandomArrayElement(TIMES)}`,
-    features: getRandomLength(FEATURES),
-    description: getRandomArrayElement(DESCRIPTION),
-    photos: getRandomArrayElement(PHOTOS),
-    location: {
-      lat: getNumber(35.65, 35.7, 5),
-      lng: getNumber(139.7, 139.8, 5),
+const getOffer = () => {
+  const lat = getNumber(35.65, 35.7, 5);
+  const lng = getNumber(139.7, 139.8, 5);
+  return {
+    author: {
+      avatar:
+        avatarImgCount <= 8
+          ? `img/avatars/user0${avatarImgCount++}.png`
+          : 'img/avatars/default.png',
     },
-  },
-});
+    offer: {
+      title: 'Это доступное обьявление по вашим запросам',
+      address: `${lat}, ${lng}`,
+      price: getNumber(100, 1000),
+      type: getRandomArrayElement(TYPES),
+      rooms: getNumber(1, 5),
+      guests: getNumber(1, 8),
+      checkin: `до ${getRandomArrayElement(TIMES)}`,
+      checkout: `после ${getRandomArrayElement(TIMES)}`,
+      features: getRandomLength(FEATURES),
+      description: getRandomArrayElement(DESCRIPTION),
+      photos: getRandomArrayElement(PHOTOS),
+      location: {
+        lat: lat,
+        lng: lng,
+      },
+    },
+  };
+};
 
 const arrayOffers = (offersCount) =>
   Array(offersCount)
