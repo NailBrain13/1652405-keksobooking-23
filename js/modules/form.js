@@ -2,6 +2,7 @@ const adForm = document.querySelector('.ad-form');
 const mapFilter = document.querySelector('.map__filters');
 const adFormElements = Array.from(adForm.children);
 const mapFilterElements = Array.from(mapFilter.children);
+// const adFormBtn = adForm.querySelector('.ad-form__submit');
 
 const enableForm = () => {
   adForm.classList.add('ad-form--disabled');
@@ -26,5 +27,16 @@ const toggleForm = (value) => {
     disableForm();
   }
 };
+
+adForm.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+
+  const formData = new FormData(adForm);
+
+  fetch('https://23.javascript.pages.academy/keksobooking', {
+    method: 'POST',
+    body: formData,
+  });
+});
 
 export { toggleForm };
