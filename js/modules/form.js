@@ -1,4 +1,3 @@
-import { SUCCESS, ERROR, getMessage } from './messages.js';
 const adForm = document.querySelector('.ad-form');
 const mapFilter = document.querySelector('.map__filters');
 const adFormElements = Array.from(adForm.children);
@@ -28,27 +27,10 @@ const toggleForm = (value) => {
   }
 };
 
-const setAdFormSubmint = () => {
-  adForm.addEventListener('submit', (evt) => {
-    evt.preventDefault();
+const formReset = () => {
+  adFormElements('input').forEach((el) => (el.value = ''));
 
-    const formData = new FormData(adForm);
-
-    fetch('https://23.javascript.pages.academy/keksobooking', {
-      method: 'POST',
-      body: formData,
-    })
-      .then((response) => {
-        if (response.ok) {
-          getMessage(SUCCESS);
-        } else {
-          getMessage(ERROR);
-        }
-      })
-      .catch(() => {
-        getMessage(ERROR);
-      });
-  });
+  mapFilterElements('input').forEach((el) => (el.value = ''));
 };
 
-export { toggleForm, setAdFormSubmint };
+export { toggleForm, adForm, formReset };
