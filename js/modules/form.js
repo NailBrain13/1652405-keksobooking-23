@@ -27,16 +27,21 @@ const toggleForm = (value) => {
     disableForm();
   }
 };
+const setAdFormSubmint = (onSuccess) => {
+  adForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
 
-adForm.addEventListener('submit', (evt) => {
-  evt.preventDefault();
+    const formData = new FormData(adForm);
 
-  const formData = new FormData(adForm);
-
-  fetch('https://23.javascript.pages.academy/keksobooking', {
-    method: 'POST',
-    body: formData,
+    fetch('https://23.javascript.pages.academy/keksobooking', {
+      method: 'POST',
+      body: formData,
+    }).then(() => onSuccess());
   });
-});
+};
 
-export { toggleForm };
+const successSubmint = () => {
+  console.log('Form go away');
+};
+
+export { toggleForm, setAdFormSubmint, successSubmint };
