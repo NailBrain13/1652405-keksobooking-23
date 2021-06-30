@@ -22,6 +22,7 @@ const setAdFormSubmit = () => {
       .then((response) => {
         if (response.ok) {
           getMessage(SUCCESS);
+          formReset();
         } else {
           getMessage(ERROR);
         }

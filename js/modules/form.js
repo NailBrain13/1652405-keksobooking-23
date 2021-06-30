@@ -28,9 +28,8 @@ const toggleForm = (value) => {
 };
 
 const formReset = () => {
-  adFormElements('input').forEach((el) => (el.value = ''));
-
-  mapFilterElements('input').forEach((el) => (el.value = ''));
+  adForm.reset();
+  mapFilter.reset();
 };
 
 export { toggleForm, adForm, formReset };
