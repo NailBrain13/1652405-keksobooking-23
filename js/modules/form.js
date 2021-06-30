@@ -27,6 +27,30 @@ const toggleForm = (value) => {
     disableForm();
   }
 };
+
+const ALERT_SHOW_TIME = 3000;
+const showAlert = (message) => {
+  const alertContainer = document.createElement('div');
+  alertContainer.style.zIndex = 100;
+  alertContainer.style.position = 'sticky';
+  alertContainer.style.left = 0;
+  alertContainer.style.top = 0;
+  alertContainer.style.bottom = '50%';
+  alertContainer.style.right = 0;
+  alertContainer.style.padding = '10px 3px';
+  alertContainer.style.fontSize = '30px';
+  alertContainer.style.textAlign = 'center';
+  alertContainer.style.backgroundColor = 'orangered';
+
+  alertContainer.textContent = message;
+
+  document.body.append(alertContainer);
+
+  setTimeout(() => {
+    alertContainer.remove();
+  }, ALERT_SHOW_TIME);
+};
+
 const setAdFormSubmint = (onSuccess) => {
   adForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
@@ -36,12 +60,18 @@ const setAdFormSubmint = (onSuccess) => {
     fetch('https://23.javascript.pages.academy/keksobooking', {
       method: 'POST',
       body: formData,
-    }).then(() => onSuccess());
+    })
+      .then((response) => {
+        if (response.ok) {
+          onSuccess('Форма отправлена.');
+        } else {
+          onSuccess('Не удалось отправить форму. Попробуйте ещё раз');
+        }
+      })
+      .catch(() => {
+        onSuccess('Не удалось отправить форму. Попробуйте ещё раз');
+      });
   });
 };
 
-const successSubmint = () => {
-  console.log('Form go away');
-};
-
-export { toggleForm, setAdFormSubmint, successSubmint };
+export { toggleForm, setAdFormSubmint, showAlert };
