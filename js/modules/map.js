@@ -43,14 +43,6 @@ const searchArea = L.circle(TOKYO_CENTER, {
 });
 searchArea.addTo(map);
 
-const resetButton = document.querySelector('.ad-form__reset');
-resetButton.addEventListener('click', () => {
-  mainPinMarker.setLatLng(TOKYO_CENTER);
-
-  map.setView(TOKYO_CENTER, 11);
-  searchArea.remove();
-});
-
 mainPinMarker.on('moveend', (evt) => {
   const userCoordinate = evt.target.getLatLng();
   const lat = userCoordinate.lat.toFixed(5);
@@ -76,5 +68,14 @@ const createMarkers = (arr) => {
     });
   });
 };
+
+const resetButton = document.querySelector('.ad-form__reset');
+resetButton.addEventListener('click', () => {
+  mainPinMarker.setLatLng(TOKYO_CENTER);
+
+  map.setView(TOKYO_CENTER, 11);
+  searchArea.remove();
+  markerTestGroup.remove();
+});
 
 export { createMarkers, testMarkers };
