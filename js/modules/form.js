@@ -1,8 +1,8 @@
+import { SUCCESS, ERROR, getMessage } from './messages.js';
 const adForm = document.querySelector('.ad-form');
 const mapFilter = document.querySelector('.map__filters');
 const adFormElements = Array.from(adForm.children);
 const mapFilterElements = Array.from(mapFilter.children);
-// const adFormBtn = adForm.querySelector('.ad-form__submit');
 
 const enableForm = () => {
   adForm.classList.add('ad-form--disabled');
@@ -28,30 +28,7 @@ const toggleForm = (value) => {
   }
 };
 
-const ALERT_SHOW_TIME = 3000;
-const showAlert = (message) => {
-  const alertContainer = document.createElement('div');
-  alertContainer.style.zIndex = 100;
-  alertContainer.style.position = 'sticky';
-  alertContainer.style.left = 0;
-  alertContainer.style.top = 0;
-  alertContainer.style.bottom = '50%';
-  alertContainer.style.right = 0;
-  alertContainer.style.padding = '10px 3px';
-  alertContainer.style.fontSize = '30px';
-  alertContainer.style.textAlign = 'center';
-  alertContainer.style.backgroundColor = 'orangered';
-
-  alertContainer.textContent = message;
-
-  document.body.append(alertContainer);
-
-  setTimeout(() => {
-    alertContainer.remove();
-  }, ALERT_SHOW_TIME);
-};
-
-const setAdFormSubmint = (onSuccess) => {
+const setAdFormSubmint = () => {
   adForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
@@ -63,15 +40,15 @@ const setAdFormSubmint = (onSuccess) => {
     })
       .then((response) => {
         if (response.ok) {
-          onSuccess('Форма отправлена.');
+          getMessage(SUCCESS);
         } else {
-          onSuccess('Не удалось отправить форму. Попробуйте ещё раз');
+          getMessage(ERROR);
         }
       })
       .catch(() => {
-        onSuccess('Не удалось отправить форму. Попробуйте ещё раз');
+        getMessage(ERROR);
       });
   });
 };
 
-export { toggleForm, setAdFormSubmint, showAlert };
+export { toggleForm, setAdFormSubmint };
