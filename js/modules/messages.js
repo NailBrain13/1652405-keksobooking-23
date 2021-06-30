@@ -4,7 +4,6 @@ const SUCCESS = document
 const ERROR = document.querySelector('#error').content.querySelector('.error');
 
 const notifeField = document.querySelector('.notice');
-const ALERT_SHOW_TIME = 3000;
 
 const getMessage = (value) => {
   const messagePopUp = value.cloneNode(true);
@@ -16,9 +15,14 @@ const getMessage = (value) => {
 
   notifeField.append(messagePopUp);
 
-  setTimeout(() => {
+  document.body.addEventListener('click', () => {
     messagePopUp.remove();
-  }, ALERT_SHOW_TIME);
+  });
+  document.body.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+      messagePopUp.remove();
+    }
+  });
 };
 
 export { SUCCESS, ERROR, getMessage };
