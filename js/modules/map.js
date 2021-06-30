@@ -57,8 +57,8 @@ const createMarkers = (arr) => {
   arr.forEach((object) => {
     const marker = L.marker(
       {
-        lat: object.offer.location.lat,
-        lng: object.offer.location.lng,
+        lat: object.location.lat,
+        lng: object.location.lng,
       },
       { icon: alterPinIcon },
     );
