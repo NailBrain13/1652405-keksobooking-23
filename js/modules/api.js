@@ -1,7 +1,7 @@
 import { SUCCESS, ERROR, showAlert } from './messages.js';
 import { adForm, formReset } from './form.js';
 const fetchData = 'https://23.javascript.pages.academy/keksobooking/data';
-const fetchPostData = 'https://23.javascript.pages.academy/keksobookin';
+const fetchPostData = 'https://23.javascript.pages.academy/keksobooking';
 
 const getData = (onSuccess) => {
   fetch(fetchData)
