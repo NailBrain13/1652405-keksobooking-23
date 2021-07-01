@@ -41,9 +41,21 @@ ERROR.hidden = true;
 SUCCESS.addEventListener('click', () => {
   SUCCESS.hidden = true;
 });
+SUCCESS.addEventListener('keydown', (evt) => {
+  evt.preventDefault();
+  if (evt.key === 'Escape') {
+    SUCCESS.hidden = true;
+  }
+});
 
 ERROR.addEventListener('click', () => {
   ERROR.hidden = true;
+});
+ERROR.addEventListener('keydown', (evt) => {
+  evt.preventDefault();
+  if (evt.key === 'Escape') {
+    ERROR.hidden = true;
+  }
 });
 
 export { SUCCESS, ERROR, showAlert };
