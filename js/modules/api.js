@@ -1,8 +1,9 @@
 import { SUCCESS, ERROR, getMessage } from './messages.js';
 import { adForm, formReset } from './form.js';
-
+const fetchData = 'https://23.javascript.pages.academy/keksobooking/data';
+const fetchPostData = 'https://23.javascript.pages.academy/keksobooking';
 const getData = (onSuccess) => {
-  fetch('https://23.javascript.pages.academy/keksobooking/data')
+  fetch(fetchData)
     .then((response) => response.json())
     .then((offers) => {
       onSuccess(offers);
@@ -15,7 +16,7 @@ const setAdFormSubmit = () => {
 
     const formData = new FormData(adForm);
 
-    fetch('https://23.javascript.pages.academy/keksobooking', {
+    fetch(fetchPostData, {
       method: 'POST',
       body: formData,
     })
