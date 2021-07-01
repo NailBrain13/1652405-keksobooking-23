@@ -1,7 +1,7 @@
-import { SUCCESS, ERROR, getMessage, showAlert } from './messages.js';
+import { SUCCESS, ERROR, showAlert } from './messages.js';
 import { adForm, formReset } from './form.js';
 const fetchData = 'https://23.javascript.pages.academy/keksobooking/data';
-const fetchPostData = 'https://23.javascript.pages.academy/keksobooking';
+const fetchPostData = 'https://23.javascript.pages.academy/keksobookin';
 
 const getData = (onSuccess) => {
   fetch(fetchData)
@@ -27,14 +27,14 @@ const setAdFormSubmit = () => {
     })
       .then((response) => {
         if (response.ok) {
-          getMessage(SUCCESS);
+          SUCCESS.hidden = false;
           formReset();
         } else {
-          getMessage(ERROR);
+          ERROR.hidden = false;
         }
       })
       .catch(() => {
-        getMessage(ERROR);
+        ERROR.hidden = false;
       });
   });
 };
