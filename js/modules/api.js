@@ -1,10 +1,15 @@
-import { SUCCESS, ERROR, getMessage } from './messages.js';
+import { SUCCESS, ERROR, getMessage, showAlert } from './messages.js';
 import { adForm, formReset } from './form.js';
 const fetchData = 'https://23.javascript.pages.academy/keksobooking/data';
 const fetchPostData = 'https://23.javascript.pages.academy/keksobooking';
+
 const getData = (onSuccess) => {
   fetch(fetchData)
-    .then((response) => response.json())
+    .then((response) =>
+      response.ok
+        ? response.json()
+        : showAlert('Не удалось получить данные с сервера.'),
+    )
     .then((offers) => {
       onSuccess(offers);
     });
