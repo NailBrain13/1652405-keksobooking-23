@@ -15,7 +15,7 @@ const disableForm = () => {
   adForm.classList.remove('ad-form--disabled');
   adFormElements.forEach((element) => (element.disabled = false));
 
-  mapFilter.classList.remove('ad-form--disabled');
+  mapFilter.classList.remove('map__filters--disabled');
   mapFilterElements.forEach((element) => (element.disabled = false));
 };
 
@@ -27,4 +27,9 @@ const toggleForm = (value) => {
   }
 };
 
-export { toggleForm };
+const formReset = () => {
+  adForm.reset();
+  mapFilter.reset();
+};
+
+export { toggleForm, adForm, formReset };

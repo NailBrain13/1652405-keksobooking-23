@@ -10,12 +10,26 @@ const getCard = ({ author, offer }) => {
   const similarGuests = similarCard.querySelector('.popup__text--capacity');
   const similarTime = similarCard.querySelector('.popup__text--time');
   const similarDesc = similarCard.querySelector('.popup__description');
-
   const similarAvatar = similarCard.querySelector('.popup__avatar');
-  const similarPhoto = similarCard.querySelector('.popup__photo');
   const similarType = similarCard.querySelector('.popup__type');
-
   const cardFeautures = similarCard.querySelector('.popup__features');
+  const photoList = similarCard.querySelector('.popup__photos');
+  photoList.innerHTML = '';
+
+  const fillPhotoList = () => {
+    if (offer.photos) {
+      offer.photos.forEach((value) => {
+        const photoItem = document.createElement('img');
+        photoItem.classList.add('popup__photo');
+        photoItem.src = value;
+        photoItem.width = 45;
+        photoItem.height = 40;
+        photoItem.alt = offer.title;
+        photoList.appendChild(photoItem);
+      });
+    }
+  };
+  fillPhotoList();
 
   Object.keys(offer).forEach(() => {
     if (!offer.title) {
@@ -67,8 +81,8 @@ const getCard = ({ author, offer }) => {
   similarTime.textContent = `Заезд ${offer.checkin}, выезд ${offer.checkout}`;
   similarDesc.textContent = offer.description;
   similarAvatar.src = author.avatar;
-  similarPhoto.src = offer.photos;
   similarType.textContent = comparisonTypes(offer);
+
   return similarCard;
 };
 
