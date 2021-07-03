@@ -1,7 +1,6 @@
 import { toggleForm } from './form.js';
-import { arrayOffers } from './test-data.js';
 import { getCard } from './card.js';
-const TEST_MARKERS = 10;
+
 const TOKYO_CENTER = {
   lat: 35.68941,
   lng: 139.69232,
@@ -50,7 +49,6 @@ mainPinMarker.on('moveend', (evt) => {
   inputAddress.value = `${lat},  ${lng}`;
 });
 
-const testMarkers = arrayOffers(TEST_MARKERS);
 const markerTestGroup = L.layerGroup().addTo(map);
 
 const createMarkers = (arr) => {
@@ -78,4 +76,4 @@ resetButton.addEventListener('click', () => {
   markerTestGroup.remove();
 });
 
-export { createMarkers, testMarkers };
+export { createMarkers };
