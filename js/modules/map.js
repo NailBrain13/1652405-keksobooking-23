@@ -1,5 +1,6 @@
 import { toggleForm } from './form.js';
 import { getCard } from './card.js';
+import { formReset } from './form.js';
 
 const TOKYO_CENTER = {
   lat: 35.68941,
@@ -72,8 +73,7 @@ resetButton.addEventListener('click', () => {
   mainPinMarker.setLatLng(TOKYO_CENTER);
 
   map.setView(TOKYO_CENTER, 11);
-  searchArea.remove();
-  markerTestGroup.remove();
+  formReset();
 });
 
 export { createMarkers };
