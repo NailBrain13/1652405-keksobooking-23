@@ -90,50 +90,40 @@ const applyFilter = () => {
 
 typeFilter.addEventListener('change', (evt) => {
   FILTER_VALUE.type = evt.target.value;
-  markerTestGroup.clearLayers();
   applyFilter();
 });
 
 priceFilter.addEventListener('change', (evt) => {
   FILTER_VALUE.price = evt.target.value;
-  markerTestGroup.clearLayers();
   applyFilter();
 });
 
 roomsFilter.addEventListener('change', (evt) => {
   FILTER_VALUE.rooms = evt.target.value;
-  markerTestGroup.clearLayers();
   applyFilter();
 });
 
 guestsFilter.addEventListener('change', (evt) => {
   FILTER_VALUE.guests = evt.target.value;
-  markerTestGroup.clearLayers();
   applyFilter();
 });
 
 wifiFilter.addEventListener('click', () => {
-  markerTestGroup.clearLayers();
   applyFilter();
 });
 dishwasherFilter.addEventListener('click', () => {
-  markerTestGroup.clearLayers();
   applyFilter();
 });
 parkingFilter.addEventListener('click', () => {
-  markerTestGroup.clearLayers();
   applyFilter();
 });
 washerFilter.addEventListener('click', () => {
-  markerTestGroup.clearLayers();
   applyFilter();
 });
 elevatorFilter.addEventListener('click', () => {
-  markerTestGroup.clearLayers();
   applyFilter();
 });
 conditionerFilter.addEventListener('click', () => {
-  markerTestGroup.clearLayers();
   applyFilter();
 });
 
