@@ -76,4 +76,4 @@ resetButton.addEventListener('click', () => {
   formReset();
 });
 
-export { createMarkers };
+export { createMarkers, markerTestGroup };
