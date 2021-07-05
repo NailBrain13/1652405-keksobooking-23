@@ -1,17 +1,19 @@
 import { SUCCESS, ERROR, showAlert } from './messages.js';
-import { adForm, formReset } from './form.js';
+import { adForm, formReset, toggleForm } from './form.js';
 const fetchData = 'https://23.javascript.pages.academy/keksobooking/data';
 const fetchPostData = 'https://23.javascript.pages.academy/keksobooking';
 
 const getData = (onSuccess) => {
   fetch(fetchData)
-    .then((response) =>
-      response.ok
-        ? response.json()
-        : showAlert('Не удалось получить данные с сервера.'),
+    .then(
+      (response) =>
+        response.ok
+          ? response.json()
+          : showAlert('Не удалось получить данные с сервера.'),
+      toggleForm(true),
     )
     .then((offers) => {
-      onSuccess(offers);
+      onSuccess(offers), toggleForm(false);
     });
 };
 
