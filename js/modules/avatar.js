@@ -26,12 +26,6 @@ fileChooser.addEventListener('change', () => {
   }
 });
 
-const clearImages = () => {
-  Array.from(previevPhoto.children).forEach((img) => {
-    img.remove();
-  });
-};
-
 const addImg = (result) => {
   const div = previevPhoto;
   const img = previewAvatar.cloneNode(true);
@@ -40,6 +34,12 @@ const addImg = (result) => {
   img.height = IMG_SIZE;
   div.appendChild(img);
   previevContainer.appendChild(div);
+};
+
+const clearImages = () => {
+  Array.from(previevPhoto.children).forEach((img) => {
+    img.remove();
+  });
 };
 
 previevUpload.addEventListener('change', () => {

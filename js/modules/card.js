@@ -2,6 +2,8 @@ import { comparisonTypes } from './util.js';
 const similarCardTemplate = document
   .querySelector('#card')
   .content.querySelector('.popup');
+const WIDTH = 70;
+const HEIGHT = 40;
 const getCard = ({ author, offer }) => {
   const similarCard = similarCardTemplate.cloneNode(true);
   const similarTitle = similarCard.querySelector('.popup__title');
@@ -22,8 +24,8 @@ const getCard = ({ author, offer }) => {
         const photoItem = document.createElement('img');
         photoItem.classList.add('popup__photo');
         photoItem.src = value;
-        photoItem.width = 45;
-        photoItem.height = 40;
+        photoItem.width = WIDTH;
+        photoItem.height = HEIGHT;
         photoItem.alt = offer.title;
         photoList.appendChild(photoItem);
       });
