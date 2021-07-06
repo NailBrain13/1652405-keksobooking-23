@@ -1,3 +1,4 @@
+import { resetAvatar } from './avatar.js';
 const adForm = document.querySelector('.ad-form');
 const mapFilter = document.querySelector('.map__filters');
 const adFormElements = Array.from(adForm.children);
@@ -30,6 +31,7 @@ const toggleForm = (value) => {
 const formReset = () => {
   adForm.reset();
   mapFilter.reset();
+  resetAvatar();
 };
 
 export { toggleForm, adForm, formReset };
