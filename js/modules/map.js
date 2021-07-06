@@ -6,13 +6,15 @@ const TOKYO_CENTER = {
   lat: 35.68941,
   lng: 139.69232,
 };
+const ZOOM = 11;
+const RADIUS_MAP = 12000;
 const inputAddress = document.querySelector('#address');
 toggleForm(true);
 const map = L.map('map-canvas')
   .on('load', () => {
     toggleForm(false);
   })
-  .setView(TOKYO_CENTER, 11);
+  .setView(TOKYO_CENTER, ZOOM);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution:
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -39,7 +41,7 @@ const searchArea = L.circle(TOKYO_CENTER, {
   color: 'black',
   fillColor: '#7FFFD4',
   fillOpacity: 0.5,
-  radius: 12000,
+  radius: RADIUS_MAP,
 });
 searchArea.addTo(map);
 
@@ -72,7 +74,7 @@ const resetButton = document.querySelector('.ad-form__reset');
 resetButton.addEventListener('click', () => {
   mainPinMarker.setLatLng(TOKYO_CENTER);
 
-  map.setView(TOKYO_CENTER, 11);
+  map.setView(TOKYO_CENTER, ZOOM);
   formReset();
 });
 
