@@ -1,6 +1,15 @@
 import { adForm } from './form.js';
 const ALERT_SHOW_TIME = 5000;
 
+const SUCCESS = document
+  .querySelector('#success')
+  .content.querySelector('.success')
+  .cloneNode(true);
+const ERROR = document
+  .querySelector('#error')
+  .content.querySelector('.error')
+  .cloneNode(true);
+
 const showAlert = (message) => {
   const alertContainer = document.createElement('div');
   alertContainer.style.zIndex = 100;
@@ -22,15 +31,6 @@ const showAlert = (message) => {
     alertContainer.remove();
   }, ALERT_SHOW_TIME);
 };
-
-const SUCCESS = document
-  .querySelector('#success')
-  .content.querySelector('.success')
-  .cloneNode(true);
-const ERROR = document
-  .querySelector('#error')
-  .content.querySelector('.error')
-  .cloneNode(true);
 
 adForm.insertAdjacentElement('beforeend', SUCCESS);
 adForm.insertAdjacentElement('beforeend', ERROR);

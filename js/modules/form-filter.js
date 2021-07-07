@@ -2,18 +2,6 @@ import { debounce } from '../utils/debounce.js';
 import { getData } from './api.js';
 import { createMarkers, markerTestGroup } from './map.js';
 
-const mapFilters = document.querySelector('.map__filters');
-const typeFilter = mapFilters.querySelector('#housing-type');
-const priceFilter = mapFilters.querySelector('#housing-price');
-const roomsFilter = mapFilters.querySelector('#housing-rooms');
-const guestsFilter = mapFilters.querySelector('#housing-guests');
-const wifiFilter = mapFilters.querySelector('#filter-wifi');
-const dishwasherFilter = mapFilters.querySelector('#filter-dishwasher');
-const parkingFilter = mapFilters.querySelector('#filter-parking');
-const washerFilter = mapFilters.querySelector('#filter-washer');
-const elevatorFilter = mapFilters.querySelector('#filter-elevator');
-const conditionerFilter = mapFilters.querySelector('#filter-conditioner');
-
 const OFFERS_VALUE = 10;
 const RERENDER_DELAY = 500;
 
@@ -42,6 +30,18 @@ const PRICE = {
   MIN: 10000,
   MAX: 50000,
 };
+
+const mapFilters = document.querySelector('.map__filters');
+const typeFilter = mapFilters.querySelector('#housing-type');
+const priceFilter = mapFilters.querySelector('#housing-price');
+const roomsFilter = mapFilters.querySelector('#housing-rooms');
+const guestsFilter = mapFilters.querySelector('#housing-guests');
+const wifiFilter = mapFilters.querySelector('#filter-wifi');
+const dishwasherFilter = mapFilters.querySelector('#filter-dishwasher');
+const parkingFilter = mapFilters.querySelector('#filter-parking');
+const washerFilter = mapFilters.querySelector('#filter-washer');
+const elevatorFilter = mapFilters.querySelector('#filter-elevator');
+const conditionerFilter = mapFilters.querySelector('#filter-conditioner');
 
 const filterMatch = (filterValue, dataField) =>
   filterValue === ANY || String(filterValue) === String(dataField);

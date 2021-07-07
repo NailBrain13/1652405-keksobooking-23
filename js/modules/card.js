@@ -1,9 +1,11 @@
 import { comparisonTypes } from './util.js';
+const WIDTH = 70;
+const HEIGHT = 40;
+
 const similarCardTemplate = document
   .querySelector('#card')
   .content.querySelector('.popup');
-const WIDTH = 70;
-const HEIGHT = 40;
+
 const getCard = ({ author, offer }) => {
   const similarCard = similarCardTemplate.cloneNode(true);
   const similarTitle = similarCard.querySelector('.popup__title');
