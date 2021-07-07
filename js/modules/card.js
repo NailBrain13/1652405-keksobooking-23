@@ -1,4 +1,4 @@
-import { comparisonTypes } from './util.js';
+import { compareTypes } from './util.js';
 const WIDTH = 70;
 const HEIGHT = 40;
 
@@ -85,7 +85,7 @@ const getCard = ({ author, offer }) => {
   similarTime.textContent = `Заезд ${offer.checkin}, выезд ${offer.checkout}`;
   similarDesc.textContent = offer.description;
   similarAvatar.src = author.avatar;
-  similarType.textContent = comparisonTypes(offer);
+  similarType.textContent = compareTypes(offer);
 
   return similarCard;
 };

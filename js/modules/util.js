@@ -1,4 +1,4 @@
-const comparisonTypes = (obj) => {
+const compareTypes = (obj) => {
   switch (obj.type) {
     case 'flat':
       return 'Квартира';
@@ -17,4 +17,4 @@ const setSameValue = (currentValue, changeableValue) => {
   changeableValue.value = currentValue.value;
 };
 
-export { comparisonTypes, setSameValue };
+export { compareTypes, setSameValue };

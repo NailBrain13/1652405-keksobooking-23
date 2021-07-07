@@ -54,7 +54,7 @@ const priceMatch = (filterValue, dataField) =>
     dataField < PRICE.MAX) ||
   (filterValue === PRICE.HIGH && dataField >= PRICE.MAX);
 
-const ifChecked = (checkbox, dataField, fieldValue) =>
+const selectedFeatures = (checkbox, dataField, fieldValue) =>
   checkbox.checked === false ||
   (dataField && dataField.find((value) => value === fieldValue));
 
@@ -68,16 +68,28 @@ const applyFilter = () => {
           priceMatch(FILTER_VALUE.price, item.offer.price) &&
           filterMatch(FILTER_VALUE.rooms, item.offer.rooms) &&
           filterMatch(FILTER_VALUE.guests, item.offer.guests) &&
-          ifChecked(wifiFilter, item.offer.features, FEATURES.WIFI) &&
-          ifChecked(
+          selectedFeatures(wifiFilter, item.offer.features, FEATURES.WIFI) &&
+          selectedFeatures(
             dishwasherFilter,
             item.offer.features,
             FEATURES.DISHWASHER,
           ) &&
-          ifChecked(parkingFilter, item.offer.features, FEATURES.PARKING) &&
-          ifChecked(washerFilter, item.offer.features, FEATURES.WASHER) &&
-          ifChecked(elevatorFilter, item.offer.features, FEATURES.ELEVATOR) &&
-          ifChecked(
+          selectedFeatures(
+            parkingFilter,
+            item.offer.features,
+            FEATURES.PARKING,
+          ) &&
+          selectedFeatures(
+            washerFilter,
+            item.offer.features,
+            FEATURES.WASHER,
+          ) &&
+          selectedFeatures(
+            elevatorFilter,
+            item.offer.features,
+            FEATURES.ELEVATOR,
+          ) &&
+          selectedFeatures(
             conditionerFilter,
             item.offer.features,
             FEATURES.CONDITIONER,
