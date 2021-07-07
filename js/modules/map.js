@@ -7,7 +7,8 @@ const TOKYO_CENTER = {
   lng: 139.69232,
 };
 const ZOOM = 11;
-const RADIUS_MAP = 12000;
+const INDEX_OFFSET = 100;
+const RADIUS_MAP = 10000;
 const inputAddress = document.querySelector('#address');
 toggleForm(true);
 const map = L.map('map-canvas')
@@ -32,6 +33,9 @@ const alterPinIcon = L.icon({
 });
 
 const mainPinMarker = L.marker(TOKYO_CENTER, {
+  riseOnHover: true,
+  riseOffset: INDEX_OFFSET,
+  zIndexOffset: INDEX_OFFSET,
   draggable: true,
   icon: mainPinIcon,
 });
