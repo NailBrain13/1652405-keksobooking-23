@@ -3,7 +3,6 @@ import { getData } from './api.js';
 import { createMarkers, markerTestGroup } from './map.js';
 
 const OFFERS_VALUE = 10;
-const RERENDER_DELAY = 500;
 
 const FEATURES = {
   WIFI: 'wifi',
@@ -96,7 +95,7 @@ const applyFilter = () => {
           ),
       );
       createMarkers(obj.slice(0, OFFERS_VALUE));
-    }, RERENDER_DELAY);
+    });
   })();
 };
 
