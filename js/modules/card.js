@@ -63,14 +63,14 @@ const getCard = ({ author, offer }) => {
     if (!offer.features) {
       cardFeautures.classList.add('hidden');
     } else {
-      const featureItem = offer.features.map(
+      const featureItems = offer.features.map(
         (feature) => `popup__feature--${feature}`,
       );
 
-      featureItem.forEach(() => {
+      featureItems.forEach(() => {
         cardFeautures.querySelectorAll('.popup__feature').forEach((item) => {
           const elementClass = item.classList[1];
-          if (!featureItem.includes(elementClass)) {
+          if (!featureItems.includes(elementClass)) {
             item.remove();
           }
         });

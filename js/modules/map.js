@@ -58,8 +58,8 @@ mainPinMarker.on('moveend', (evt) => {
 
 const markerTestGroup = L.layerGroup().addTo(map);
 
-const createMarkers = (arr) => {
-  arr.forEach((object) => {
+const createMarkers = (arrays) => {
+  arrays.forEach((object) => {
     const marker = L.marker(
       {
         lat: object.location.lat,
