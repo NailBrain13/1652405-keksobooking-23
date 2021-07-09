@@ -58,81 +58,82 @@ const selectedFeatures = (checkbox, dataField, fieldValue) =>
   checkbox.checked === false ||
   (dataField && dataField.find((value) => value === fieldValue));
 
+let obtainedData = [];
+getData((obj) => {
+  obtainedData = obj;
+  createMarkers(obj.slice(0, OFFERS_VALUE));
+});
+
 const applyFilter = () => {
   markerTestGroup.clearLayers();
-  getData((obj) => {
-    obj = obj.filter(
-      (item) =>
-        filterMatch(FILTER_VALUE.type, item.offer.type) &&
-        priceMatch(FILTER_VALUE.price, item.offer.price) &&
-        filterMatch(FILTER_VALUE.rooms, item.offer.rooms) &&
-        filterMatch(FILTER_VALUE.guests, item.offer.guests) &&
-        selectedFeatures(wifiFilter, item.offer.features, FEATURES.WIFI) &&
-        selectedFeatures(
-          dishwasherFilter,
-          item.offer.features,
-          FEATURES.DISHWASHER,
-        ) &&
-        selectedFeatures(
-          parkingFilter,
-          item.offer.features,
-          FEATURES.PARKING,
-        ) &&
-        selectedFeatures(washerFilter, item.offer.features, FEATURES.WASHER) &&
-        selectedFeatures(
-          elevatorFilter,
-          item.offer.features,
-          FEATURES.ELEVATOR,
-        ) &&
-        selectedFeatures(
-          conditionerFilter,
-          item.offer.features,
-          FEATURES.CONDITIONER,
-        ),
-    );
-    createMarkers(obj.slice(0, OFFERS_VALUE));
-  });
+  let filteredData = [...obtainedData];
+  filteredData = filteredData.filter(
+    (item) =>
+      filterMatch(FILTER_VALUE.type, item.offer.type) &&
+      priceMatch(FILTER_VALUE.price, item.offer.price) &&
+      filterMatch(FILTER_VALUE.rooms, item.offer.rooms) &&
+      filterMatch(FILTER_VALUE.guests, item.offer.guests) &&
+      selectedFeatures(wifiFilter, item.offer.features, FEATURES.WIFI) &&
+      selectedFeatures(
+        dishwasherFilter,
+        item.offer.features,
+        FEATURES.DISHWASHER,
+      ) &&
+      selectedFeatures(parkingFilter, item.offer.features, FEATURES.PARKING) &&
+      selectedFeatures(washerFilter, item.offer.features, FEATURES.WASHER) &&
+      selectedFeatures(
+        elevatorFilter,
+        item.offer.features,
+        FEATURES.ELEVATOR,
+      ) &&
+      selectedFeatures(
+        conditionerFilter,
+        item.offer.features,
+        FEATURES.CONDITIONER,
+      ),
+  );
+  createMarkers(filteredData.slice(0, OFFERS_VALUE));
 };
 
-const setFilters = debounce(applyFilter, RENDER_DELAY);
+const updateFilters = debounce(applyFilter, RENDER_DELAY);
 
 typeFilter.addEventListener('change', (evt) => {
   FILTER_VALUE.type = evt.target.value;
-  setFilters();
+  updateFilters();
 });
 
 priceFilter.addEventListener('change', (evt) => {
   FILTER_VALUE.price = evt.target.value;
-  setFilters();
+  updateFilters();
 });
 
 roomsFilter.addEventListener('change', (evt) => {
   FILTER_VALUE.rooms = evt.target.value;
-  setFilters();
+  updateFilters();
 });
 
 guestsFilter.addEventListener('change', (evt) => {
   FILTER_VALUE.guests = evt.target.value;
-  setFilters();
+  updateFilters();
 });
 
 wifiFilter.addEventListener('click', () => {
-  setFilters();
+  updateFilters();
 });
 dishwasherFilter.addEventListener('click', () => {
-  setFilters();
+  updateFilters();
 });
 parkingFilter.addEventListener('click', () => {
-  setFilters();
+  updateFilters();
 });
 washerFilter.addEventListener('click', () => {
-  setFilters();
+  updateFilters();
 });
 elevatorFilter.addEventListener('click', () => {
-  setFilters();
+  updateFilters();
 });
 conditionerFilter.addEventListener('click', () => {
-  setFilters();
+  updateFilters();
 });
 
 export { applyFilter };
