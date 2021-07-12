@@ -119,4 +119,4 @@ formTypeMatching.addEventListener('change', () => {
   }
 });
 
-export {};
+export { formPriceInput };

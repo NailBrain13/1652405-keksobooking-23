@@ -1,4 +1,5 @@
 import { resetAvatar } from './avatar.js';
+import { formPriceInput } from './validation.js';
 const adForm = document.querySelector('.ad-form');
 const mapFilter = document.querySelector('.map__filters');
 const adFormElements = Array.from(adForm.children);
@@ -29,6 +30,7 @@ const toggleForm = (value) => {
 };
 
 const formReset = () => {
+  formPriceInput.placeholder = 0;
   adForm.reset();
   mapFilter.reset();
   resetAvatar();
